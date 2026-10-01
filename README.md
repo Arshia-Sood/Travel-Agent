@@ -18,7 +18,7 @@ A user can simply enter a request such as:
 
 The system then coordinates multiple agents to research the required information and generate a structured travel plan.
 
----
+--- 
 
 ## ✨ Features
 
@@ -149,4 +149,5 @@ You can directly enter a travel request and test the TravelMate AI application.
 
 Arshia Sood 
 Aspiring Data Scientist | Machine Learning Enthusiast
+
 ⭐ If you like this project, give it a star!
