@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#f4f7f5">
+	<title>TravelMate AI | Your next trip, thoughtfully planned</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+	<div class="page-shell">
+		<header class="site-header">
+			<a class="brand" href="/" aria-label="TravelMate AI home">
+				<span class="brand-mark" aria-hidden="true">
+					<svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5 19.1 13l8.4 4.7c.8.4.5 1.6-.4 1.6l-8 .2-2.1 8.2a1 1 0 0 1-2 0l-2.1-8.2-8-.2c-.9 0-1.2-1.2-.4-1.6l8.4-4.7L16 3.5Z" fill="currentColor"/><circle cx="16" cy="16" r="14.5" stroke="currentColor" stroke-width="1.5"/></svg>
+				</span>
+				<span>TravelMate <strong>AI</strong></span>
+			</a>
+			<div class="header-note"><span class="status-dot"></span> Your personal trip planner</div>
+		</header>
+
+		<main>
+			<section class="intro" aria-labelledby="page-title">
+				<p class="eyebrow"><span></span> MAKE ROOM FOR SOMEWHERE NEW</p>
+				<h1 id="page-title">A good trip starts<br><em>with a better plan.</em></h1>
+				<p class="intro-copy">Tell us what you have in mind. TravelMate brings the flights, stays, and day-by-day details together.</p>
+			</section>
+
+			<section class="planner-layout" aria-label="Trip planner">
+				<form class="request-panel" id="travel-form">
+					<div class="panel-heading">
+						<div>
+							<p class="section-kicker">YOUR TRIP, YOUR WAY</p>
+							<h2>Where would you like to go?</h2>
+						</div>
+						<span class="step-count" aria-hidden="true">01 <i>/</i> 01</span>
+					</div>
+					<label class="sr-only" for="travel-request">Describe your travel plans</label>
+					<textarea id="travel-request" name="message" rows="5" required placeholder="Plan a 7-day trip from Bangladesh to India under 2 lakh BDT including flights, hotels and sightseeing."></textarea>
+					<div class="form-footer">
+						<p class="privacy-note"><span aria-hidden="true">✳</span> The more details, the more personal your plan.</p>
+						<button class="submit-button" id="submit-button" type="submit">
+							<span class="button-label">Plan My Trip</span>
+							<span class="button-spinner" aria-hidden="true"></span>
+							<svg class="button-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+						</button>
+					</div>
+					<p class="error-message" id="error-message" role="alert" hidden></p>
+				</form>
+
+				<aside class="planner-aside" aria-label="Planning with TravelMate">
+					<div class="aside-topline"><span>TRAVEL, IN GOOD COMPANY</span><span class="aside-spark" aria-hidden="true">✳</span></div>
+					<div class="route-art" aria-hidden="true">
+						<span class="route-point route-point-start"></span>
+						<span class="route-line"></span>
+						<span class="route-point route-point-end"></span>
+						<span class="route-plane">✈</span>
+						<span class="route-label route-label-start">YOU ARE HERE</span>
+						<span class="route-label route-label-end">NEXT STOP</span>
+					</div>
+					<h3>From first idea<br>to <em>boarding gate.</em></h3>
+					<p>One thoughtful itinerary, shaped around your time, budget, and the places you want to feel.</p>
+					<div class="aside-footer"><span class="footer-rule"></span> MADE FOR THE WAY YOU TRAVEL</div>
+				</aside>
+			</section>
+
+			<section class="results" id="results" aria-labelledby="results-title" aria-live="polite" hidden>
+				<div class="results-heading">
+					<div>
+						<p class="section-kicker">A LITTLE SOMETHING TO LOOK FORWARD TO</p>
+						<h2 id="results-title">Your trip, <em>taking shape.</em></h2>
+					</div>
+					<span class="results-stamp" aria-hidden="true">TM<br><small>PLAN</small></span>
+				</div>
+				<div class="results-grid">
+					<article class="result-card answer-card" id="answer-card" hidden>
+						<div class="card-title"><span class="card-index">01</span><h3>Trip Summary</h3></div>
+						<div class="result-content" id="answer-content"></div>
+					</article>
+					<article class="result-card" id="flights-card" hidden>
+						<div class="card-title"><span class="card-index">02</span><h3>Flight Information</h3></div>
+						<div class="result-content" id="flights-content"></div>
+					</article>
+					<article class="result-card" id="hotels-card" hidden>
+						<div class="card-title"><span class="card-index">03</span><h3>Hotel Suggestions</h3></div>
+						<div class="result-content" id="hotels-content"></div>
+					</article>
+					<article class="result-card itinerary-card" id="itinerary-card" hidden>
+						<div class="card-title"><span class="card-index">04</span><h3>Day-by-Day Itinerary</h3></div>
+						<div class="result-content" id="itinerary-content"></div>
+					</article>
+					<article class="result-card optional-card" id="budget-card" hidden>
+						<div class="card-title"><span class="card-index">05</span><h3>Estimated Budget</h3></div>
+						<div class="result-content" id="budget-content"></div>
+					</article>
+					<article class="result-card optional-card" id="recommendations-card" hidden>
+						<div class="card-title"><span class="card-index">06</span><h3>Recommendations</h3></div>
+						<div class="result-content" id="recommendations-content"></div>
+					</article>
+				</div>
+			</section>
+		</main>
+
+		<footer class="site-footer"><span>TRAVELMATE AI</span><span>GO WELL. COME BACK WITH STORIES.</span></footer>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" defer></script>
+	<script src="{{ url_for('static', path='script.js') }}" defer></script>
+</body>
+</html>
